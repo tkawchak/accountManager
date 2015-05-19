@@ -1,12 +1,5 @@
-# functions for encrypting and decrypting text in files
-
-# in order to use decryption, the shift should
-# be the opposite of that used for encryption and
-# the characters list should be the same as
-# the original
-
 import string
-
+import os
 
 def encrypt(sequence, characters, shift, reservedSymbols = string.punctuation):
     """function to encrypt a set of characters
@@ -52,3 +45,19 @@ def encrypt(sequence, characters, shift, reservedSymbols = string.punctuation):
     else:
         print('\'%s\' has not been encrypted. Please edit!' % sequence)
         return sequence
+
+
+def fix_filepath(path):
+    """takes a file path and returns the correct one, depending on windows or *nix os
+            @param path (string) - the filepath to decide on
+            @return (string) - the updated file path.
+    """
+
+    if os.name == "nt":
+        newpath = path.replace("/", "\\")
+    elif os.name == "posix":
+        newpath = path.replace("\\", "/")
+    else:
+        newpath = path
+
+    return newpath
