@@ -1,7 +1,7 @@
 import os
 
 
-def menu(options, whatToDo="what would you like to do?", clearScreenBefore = True, clearScreenAfter = True):
+def menu(options, whatToDo="Enter the number of the corresponding option.", clearScreenBefore = True, clearScreenAfter = True):
     """basic menu for cmd line menu text.
         @param options (string[]) - array of all options for the menu
         @param whatToDo (string) - prompt for the menu
@@ -11,7 +11,7 @@ def menu(options, whatToDo="what would you like to do?", clearScreenBefore = Tru
     """
 
     if clearScreenBefore:
-        os.system("cls")
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     # DISPLAYS THE MENU OPTIONS
     print(whatToDo)
@@ -22,6 +22,6 @@ def menu(options, whatToDo="what would you like to do?", clearScreenBefore = Tru
     action = raw_input("\n> ")
 
     if clearScreenAfter:
-        os.system("cls")
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     return action
