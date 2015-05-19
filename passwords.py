@@ -1,7 +1,7 @@
 import getpass
 import random
 import string
-
+from menu import menu
 
 def PasswordAccess(password, maxTries=3, attempts=0):
     """Determines if user enters correct password. Takes the password as input and the maximum number of tries
@@ -12,55 +12,18 @@ def PasswordAccess(password, maxTries=3, attempts=0):
         @return (bool) - True if user can get access, False otherwise
     """
 
-    # SOMEHOW I NEED TO GET PASSWORD TO SHOW UP AS ASTERISKS AS USER ENTERS
-    # *********************************************************************
     access = False
     while attempts < maxTries and not access:
 
-        # ****************************************************
-        # FOR SOME REASON THIS GETPASS FUNCTION IS NOT WORKING
-        # ****************************************************
-        # attempt = getpass.getpass("password: ")
-        attempt = raw_input("password: ")
+        attempt = getpass.getpass("password: ")
+        # attempt = raw_input("password: ")
 
         if attempt == password:
             access = True
         else:
             access = False
-        attempts = attempts + 1
+        attempts += 1
     return access
-
-
-def genPass():
-        """creates a password, user generated or random loops until user confirms the previously entered password"""
-
-        usePass = False
-        password = ''
-
-        # LOOPS UNTIL USER HAS NOT CONSENTED TO PASSWORD
-        while not usePass:
-
-            # ARRAY CONTAINING THE TYPES OF PASSWORD GENERATION, IN ADDITION TO USER GENERATED
-            passTypes = ['random']  # add any other types of password generation to the array
-
-            # DISPLAYS A MENY FOR THE USER TO CHOOSE WHAT TYPE OF PASSWORD GENERATION TO USE
-            passType = menu(passTypes, whatToDo='password: type password to use your own, otherwise select an option', clearScreenAfter=False)
-            # USER WANTS A RANDOM PASSWORD
-            if str(passType) == '1' or passType.lower() == 'random':
-                lengthOfPass = int(raw_input('length of password: '))
-                password = randPassGen(length=lengthOfPass)
-            # USER ENTERED THEIR OWN PASSWORD
-            else:
-                password = passType
-
-            # CHECK TO MAKE SURE THE USER WANTS TO USE THE PASSWORD
-            use = (raw_input('use \'%s\'? (y/n) ' % password)).lower()
-            if use == 'y' or use == 'yes':
-                usePass = True
-            else:
-                usePass = False
-
-        return password
 
 
 def randPassGen(length=8, characters=(string.ascii_letters + string.digits)):
@@ -80,3 +43,39 @@ def randPassGen(length=8, characters=(string.ascii_letters + string.digits)):
     passwordString = ''.join(passwordArray)
 
     return passwordString
+
+
+def genPass():
+        """creates a password, user generated or random loops until user confirms the previously entered password"""
+
+        usePass = False
+        password = ''
+
+        # LOOPS UNTIL USER HAS NOT CONSENTED TO PASSWORD
+        while not usePass:
+
+            # ARRAY CONTAINING THE TYPES OF PASSWORD GENERATION, IN ADDITION TO USER GENERATED
+            passTypes = ['random']  # add any other types of password generation to the array
+
+            # DISPLAYS A MENU FOR THE USER TO CHOOSE WHAT TYPE OF PASSWORD GENERATION TO USE
+            passType = menu(passTypes, whatToDo='password: type password to use your own, otherwise select an option',
+                            clearScreenBefore=False, clearScreenAfter=False)
+
+            # USER WANTS A RANDOM PASSWORD
+            if str(passType) == '1' or passType.lower() == 'random':
+                lengthOfPass = int(raw_input('length of password: '))
+                password = randPassGen(length=lengthOfPass)
+
+                # CHECK TO MAKE SURE THE USER WANTS TO USE THE PASSWORD
+                use = (raw_input('use \'%s\'? (y/n) ' % password)).lower()
+                if use == 'y' or use == 'yes':
+                    usePass = True
+                else:
+                    usePass = False
+
+            # USER ENTERED THEIR OWN PASSWORD
+            else:
+                password = passType
+                usePass = True
+
+        return password
