@@ -1,0 +1,34 @@
+Account Manager Help:
+
+Search:
+To return to main menu, just press enter without entering any information.
+If multiple matches are found, you must narrow down your selection before you can see the details of each account.
+
+Modify:
+You will search for an account and then be prompted if that account is the one that you want to update.
+In order to maintain information from the account previously, type 'same' or 'keep'.
+This feature allows you to change an account and its information.
+
+Create:
+Pretty self-explanatory.  Just type in the information to create a new account.
+To generate a random password, you may type random, but only for the password category.
+
+Delete:
+You will search for a term and then be prompted if that account is the one you want to delete.
+
+Pending Tasks:
+This will display the name and tasks of all accounts that have pending tasks to be completed.
+
+Backup:
+This will backup all of your account information to a .csv file
+
+Help:
+This option displays the message you are reading right now.
+
+Exit:
+You will leave the application, sign out, and disconnect from the database
+
+Future Updates:
+I plan to make this program to allow multiple users to get access to their own accounts, and create their own settings for things like encryption, backup locations, etc.
+
+Thanks for using my program! Hopefully it helps you keep track of your accounts.
